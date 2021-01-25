@@ -22,6 +22,7 @@ public class Player : MonoBehaviour
     public Transform firepoint;
     public LayerMask enemyLayer;
     public Image healthBar;
+    public GameController gc;
 
     // Start is called before the first frame update
     void Start()
@@ -104,6 +105,7 @@ public class Player : MonoBehaviour
         {
             anim.SetTrigger("die");
             isDead = true;
+            gc.ShowGameOver();
         }
     }
 

@@ -66,6 +66,7 @@
   <ItemGroup>
     <Compile Include="Assets\Script\Enemy\FlightEnemy.cs" />
     <Compile Include="Assets\Script\Enemy\SpawnEnemy.cs" />
+    <Compile Include="Assets\Script\GameController.cs" />
     <Compile Include="Assets\Script\Player\Player.cs" />
     <Compile Include="Assets\Sprites\Free Pixel Art Forest\Demo\MoveBackground.cs" />
     <None Include="Assets\Sprites\Free Pixel Art Forest\Contact.txt" />
