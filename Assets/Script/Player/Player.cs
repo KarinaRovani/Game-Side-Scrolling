@@ -5,24 +5,30 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
+    [Header("Attributes")]
     public float health;
     public float velocidade;
     public float jumpForce;
     public float atkRadius;
-
     public float recoveryTime;
+
     float recoveryCount;
 
     bool isJumping;
     bool isAttacking;
     bool isDead;
 
+    [Header("Components")]
     public Rigidbody2D rig;
     public Animator anim;
     public Transform firepoint;
     public LayerMask enemyLayer;
     public Image healthBar;
     public GameController gc;
+
+    [Header("Audio Settings")]
+    public AudioSource audioSource;
+    public AudioClip sfx;
 
     // Start is called before the first frame update
     void Start()
@@ -59,6 +65,7 @@ public class Player : MonoBehaviour
         {
             isAttacking = true;
             anim.SetInteger("transition", 3);
+            audioSource.PlayOneShot(sfx);
 
             Collider2D hit = Physics2D.OverlapCircle(firepoint.position, atkRadius, enemyLayer);
 

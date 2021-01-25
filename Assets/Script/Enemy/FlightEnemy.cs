@@ -15,6 +15,8 @@ public class FlightEnemy : MonoBehaviour
     public Rigidbody2D rig;
     public Animator anim;
 
+    bool isDead;
+
     Transform player;
 
 
@@ -54,15 +56,21 @@ public class FlightEnemy : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (isRight)
-        {
-            rig.velocity = new Vector2(speed, rig.velocity.y);
-            transform.eulerAngles = new Vector2(0, 0);
+        if (!isDead) {
+            if (isRight)
+            {
+                rig.velocity = new Vector2(speed, rig.velocity.y);
+                transform.eulerAngles = new Vector2(0, 0);
+            }
+            else
+            {
+                rig.velocity = new Vector2(-speed, rig.velocity.y);
+                transform.eulerAngles = new Vector2(0, 180);
+            }
         }
         else
         {
-            rig.velocity = new Vector2(-speed, rig.velocity.y);
-            transform.eulerAngles = new Vector2(0, 180);
+            speed = 0f;
         }
     }
 
@@ -72,6 +80,7 @@ public class FlightEnemy : MonoBehaviour
         health--;
         if (health <= 0)
         {
+            isDead = true;
             speed = 0f;
             anim.SetTrigger("death");
             Destroy(gameObject, 1f);
