@@ -1,17 +1,27 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
+    public int health;
     public float velocidade;
     public float jumpForce;
+    public float atkRadius;
+
+    public float recoveryTime;
+    float recoveryCount;
 
     bool isJumping;
     bool isAttacking;
+    bool isDead;
 
     public Rigidbody2D rig;
     public Animator anim;
+    public Transform firepoint;
+    public LayerMask enemyLayer;
+    public Image healthBar;
 
     // Start is called before the first frame update
     void Start()
@@ -22,8 +32,11 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Jump();
-        OnAttack();
+        if (isDead == false)
+        {
+            Jump();
+            OnAttack();
+        }
     }
 
     void Jump()
@@ -46,6 +59,13 @@ public class Player : MonoBehaviour
             isAttacking = true;
             anim.SetInteger("transition", 3);
 
+            Collider2D hit = Physics2D.OverlapCircle(firepoint.position, atkRadius, enemyLayer);
+
+            if (hit != null)
+            {
+                hit.GetComponent<FlightEnemy>().OnHit();
+            }
+
             StartCoroutine(OnAttacking());
         }
     }
@@ -56,7 +76,38 @@ public class Player : MonoBehaviour
         isAttacking = false;
     }
 
-    private void FixedUpdate()  
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawWireSphere(firepoint.position, atkRadius);
+    }
+    public void OnHit()
+    {
+
+        recoveryCount += Time.deltaTime;
+
+        if (recoveryCount >= recoveryTime && isDead == false)
+        {
+            anim.SetTrigger("hit");
+            health--;
+
+            healthBar.fillAmount -= 0.33f;
+
+            GameOver();
+
+            recoveryCount = 0f;
+        }
+    }
+
+    void GameOver()
+    {
+        if (health <= 0)
+        {
+            anim.SetTrigger("die");
+            isDead = true;
+        }
+    }
+
+    void OnMove()
     {
         float direcao = Input.GetAxis("Horizontal");
         rig.velocity = new Vector2(direcao * velocidade, rig.velocity.y);
@@ -75,6 +126,14 @@ public class Player : MonoBehaviour
         if (direcao == 0 && !isJumping && !isAttacking)
         {
             anim.SetInteger("transition", 0);
+        }
+
+    }
+
+    private void FixedUpdate()
+    {
+        if (isDead == false) {
+            OnMove();
         }
     }
 
