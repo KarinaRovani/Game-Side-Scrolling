@@ -154,7 +154,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a1a1c0d0f8c41d4b8b43c1548487d72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 1
+  health: 3
+  damage: 20
   speed: 2
   isRight: 0
   stopDistance: 1.8

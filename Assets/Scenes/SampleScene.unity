@@ -952,7 +952,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: faeb77b97be87c1449b1159649765867, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 3
+  health: 100
   velocidade: 5
   jumpForce: 10
   atkRadius: 1.36

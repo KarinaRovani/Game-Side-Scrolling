@@ -5,6 +5,7 @@ using UnityEngine;
 public class FlightEnemy : MonoBehaviour
 {
     public int health;
+    public float damage;
 
     public float speed;
     float initialSpeed;
@@ -43,7 +44,7 @@ public class FlightEnemy : MonoBehaviour
         if (distance <= stopDistance)
         {
             speed = 0f;
-            player.GetComponent<Player>().OnHit();
+            player.GetComponent<Player>().OnHit(damage);
         }
         else
         {

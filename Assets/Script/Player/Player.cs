@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-    public int health;
+    public float health;
     public float velocidade;
     public float jumpForce;
     public float atkRadius;
@@ -80,7 +80,7 @@ public class Player : MonoBehaviour
     {
         Gizmos.DrawWireSphere(firepoint.position, atkRadius);
     }
-    public void OnHit()
+    public void OnHit(float damage)
     {
 
         recoveryCount += Time.deltaTime;
@@ -88,9 +88,9 @@ public class Player : MonoBehaviour
         if (recoveryCount >= recoveryTime && isDead == false)
         {
             anim.SetTrigger("hit");
-            health--;
+            health -= damage;
+            healthBar.fillAmount = health/100;
 
-            healthBar.fillAmount -= 0.33f;
 
             GameOver();
 
