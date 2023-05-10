@@ -24,3 +24,7 @@ This is my first Side-Scrolling game, where the player's objective is to kill th
   <img src=".github/img/Game.png"  alt="Layouts">
 </div>
 </figure>
+
+<h5 align="center">
+  &copy;2021 - <a href="https://github.com/KarinaRovani/">Karina de Oliveira Rovani</a>
+</h5>
