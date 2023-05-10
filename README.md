@@ -1,9 +1,9 @@
 <h2 align="center">
    Game Side-Scrolling
 </h2>
-<div align="center">
-   <img alt="GAME" title="#Game" src=".github/img/Game.png" width="75%" />
-</div>
+
+![GameGif](https://github.com/KarinaRovani/Game-Side-Scrolling-CJZ/assets/37753278/93a14848-fa21-491f-831c-5ae1119d56a5)
+
 
 # About
 Game developed during the Games at Unity course.
